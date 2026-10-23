@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>لوحة تحكم Picasso Shoes</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111'/%3E%3Ctext x='32' y='43' font-family='serif' font-size='34' font-weight='700' fill='%23fff' text-anchor='middle'%3EPS%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--p:#111;--ph:#000;--pd:#000;--pl:#f1f1f1;--gt:rgba(255,255,255,.58);--gb:rgba(255,255,255,.55);--ring:rgba(0,0,0,.25);--bg:#f6f6f4;--tx:#161616;--mu:#777}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+html,body{overflow-x:hidden}
+body{font-family:Cairo,Tahoma,sans-serif;background:var(--bg);color:var(--tx);padding-bottom:calc(76px + env(safe-area-inset-bottom,0px));min-height:100vh;transition:background-color .5s}
+body::before{content:"";position:fixed;inset:-20% -20% auto auto;width:70vw;height:70vw;max-width:600px;max-height:600px;border-radius:50%;background:var(--pl);filter:blur(80px);opacity:.8;z-index:-1;transition:background-color .6s}
+button,input,select,textarea{font:inherit;color:inherit}
+.glass{background:var(--gt);backdrop-filter:blur(20px) saturate(145%);-webkit-backdrop-filter:blur(20px) saturate(145%);border:1px solid var(--gb);box-shadow:0 8px 32px rgba(0,0,0,.06);transition:background-color .5s,border-color .5s}
+@supports not (backdrop-filter:blur(1px)){.glass{background:rgba(255,255,255,.92)}}
+.wrap{max-width:1100px;margin:auto;padding:0 14px}
+header{position:sticky;top:0;z-index:20;margin:10px 10px 0;border-radius:22px;padding:8px 14px;display:flex;align-items:center;gap:10px}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--tx);font-family:Georgia,serif;font-weight:700;letter-spacing:2px;font-size:13px;white-space:nowrap}
+.logo svg{width:34px;height:34px}
+.search{flex:1;min-width:0;border:1px solid var(--gb);background:rgba(255,255,255,.6);border-radius:16px;padding:8px 12px;outline:none}
+.search:focus,input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px var(--ring)}
+.ib{border:0;background:none;font-size:22px;cursor:pointer;position:relative;padding:4px}
+.bd{position:absolute;top:-4px;left:-4px;background:var(--p);color:#fff;border-radius:99px;font-size:11px;padding:0 6px;transition:background-color .4s}
+.hero{margin:14px 0;border-radius:24px;padding:34px 22px;background:linear-gradient(135deg,var(--p),var(--pd));color:#fff;transition:background .5s}
+.hero h1{font-size:clamp(24px,6vw,42px);font-weight:800}.hero p{opacity:.8;margin-top:6px}
+.pills{display:flex;gap:8px;overflow-x:auto;padding:4px 0 10px;scrollbar-width:none}
+.pill,.chip{border:1px solid var(--gb);background:var(--gt);border-radius:99px;padding:7px 16px;cursor:pointer;white-space:nowrap;transition:.3s}
+.pill.on,.chip.on{background:var(--p);color:#fff;border-color:var(--p)}
+.fl{border-radius:20px;padding:12px;display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;align-items:center}
+.fl select{border:1px solid var(--gb);background:rgba(255,255,255,.7);border-radius:12px;padding:7px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:800px){.grid{grid-template-columns:repeat(4,1fr);gap:18px}}
+.card{border-radius:22px;overflow:hidden;cursor:pointer;transition:transform .3s}
+.card:hover{transform:translateY(-4px)}
+.card img{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:#eee}
+.card .in{padding:10px 12px 12px}.card h3{font-size:14px}.pr{color:var(--p);font-weight:800;transition:color .4s}
+.sz{font-size:11px;color:var(--mu);margin-top:4px}
+.pd{display:grid;gap:18px;margin-top:14px}@media(min-width:800px){.pd{grid-template-columns:1fr 1fr}}
+.main{width:100%;border-radius:24px;aspect-ratio:1;object-fit:cover;background:#eee}
+.th{display:flex;gap:8px;margin-top:8px}.th img{width:64px;height:64px;border-radius:14px;object-fit:cover;cursor:pointer;border:2px solid transparent}.th img.on{border-color:var(--p)}
+.sw{width:34px;height:34px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 1px #bbb;cursor:pointer;transition:.3s}
+.sw.on{box-shadow:0 0 0 3px var(--p)}
+.chip{min-width:46px;text-align:center}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 16px}
+.btn{border:0;border-radius:18px;padding:13px 18px;font-weight:700;cursor:pointer;background:var(--p);color:#fff;transition:background-color .4s,transform .15s}
+.btn:hover{background:var(--ph)}.btn:active{transform:scale(.97);background:var(--pd)}
+.btn.g{background:var(--gt);color:var(--tx);border:1px solid var(--gb)}
+.bar{position:fixed;left:10px;right:10px;bottom:calc(66px + env(safe-area-inset-bottom,0px));z-index:15;border-radius:22px;padding:10px;display:flex;gap:8px}
+.bar .btn{flex:1}
+footer{position:fixed;left:0;right:0;bottom:0;z-index:16;padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px));display:flex;gap:8px;justify-content:center;border-radius:22px 22px 0 0}
+footer a{flex:1;max-width:160px;text-align:center;text-decoration:none;color:var(--tx);font-size:12px;font-weight:600;padding:8px 2px;border-radius:14px;background:rgba(255,255,255,.6)}
+.ci{display:flex;gap:10px;border-radius:20px;padding:10px;margin-bottom:10px;align-items:center}
+.ci img{width:76px;height:76px;border-radius:14px;object-fit:cover}.ci .f{flex:1;min-width:0}
+.q{display:flex;gap:8px;align-items:center}.q button{width:28px;height:28px;border-radius:50%;border:1px solid var(--gb);background:var(--gt);cursor:pointer}
+.toast{position:fixed;top:80px;left:50%;transform:translateX(-50%);background:#111;color:#fff;padding:10px 18px;border-radius:14px;z-index:99;font-size:14}
+table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:7px;border-bottom:1px solid #0001;text-align:right}
+.adm input,.adm select,.adm textarea{width:100%;border:1px solid #0002;border-radius:12px;padding:9px;margin:4px 0 10px;background:#fff9;outline:none}
+.box{border-radius:22px;padding:16px;margin-bottom:14px}
+.mod{position:fixed;inset:0;background:#0006;z-index:50;overflow:auto;padding:14px}
+h2{margin:10px 0}.mu{color:var(--mu);font-size:13px}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script src="config.js"></script>
+<script>
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const LS={g:(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},s:(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){toast('المساحة ممتلئة')}}};
+const CFG=window.PS_CONFIG;
+const rest=(p,o={},t)=>fetch(CFG.url+'/rest/v1/'+p,{...o,headers:{apikey:CFG.key,Authorization:'Bearer '+(t||CFG.key),'Content-Type':'application/json',...(o.headers||{})}}).then(async r=>{if(!r.ok)throw new Error(await r.text());const x=await r.text();return x?JSON.parse(x):null});
+const C=[{n:'أسود',h:'#1a1a1a'},{n:'أبيض',h:'#e9e9e9'},{n:'أزرق',h:'#1d4ed8'},{n:'أخضر',h:'#15803d'},{n:'أحمر',h:'#b91c1c'},{n:'بني',h:'#78350f'}];
+let P=[],S={phone:'',fb:'',tt:'',map:''};
+async function load(){const[a,b]=await Promise.all([rest('products?select=id,data,request_count&order=id'),rest('store_settings?id=eq.1&select=data')]);P=a.map(r=>({...r.data,id:r.id,rc:r.request_count||0}));if(b&&b[0])S=b[0].data}
+let cart=LS.g('ps_cart',[]),F={q:'',size:'',color:'',cat:''},sel={},adm=false,ai=0;
+const saveCart=()=>LS.s('ps_cart',cart);let TK='';
+const shoe=h=>'data:image/svg+xml,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><rect width="400" height="400" fill="#efeeea"/><ellipse cx="200" cy="330" rx="150" ry="14" fill="#0001"/><path d="M60 270c0-50 20-100 40-130l60 10c20 40 60 55 110 60 40 5 70 20 70 50v20H60z" fill="${h}"/><path d="M60 290h290v20c0 10-8 18-20 18H80c-12 0-20-8-20-18z" fill="#fff" stroke="#0002"/><path d="M165 150l25-35 25 45" fill="none" stroke="#fff6" stroke-width="6"/></svg>`);
+const img=(p,i=0)=>p.images[i]||(i==0?shoe(p.colors[0]?.h||'#222'):shoe(p.colors[i%p.colors.length]?.h||'#222'));
+/* adaptive theme */
+const tcache={};
+function pal(hex){if(tcache[hex])return tcache[hex];let r=parseInt(hex.slice(1,3),16)/255,g=parseInt(hex.slice(3,5),16)/255,b=parseInt(hex.slice(5,7),16)/255,mx=Math.max(r,g,b),mn=Math.min(r,g,b),h=0,s=0,l=(mx+mn)/2,d=mx-mn;if(d){s=d/(1-Math.abs(2*l-1));h=mx==r?((g-b)/d)%6:mx==g?(b-r)/d+2:(r-g)/d+4;h=Math.round(h*60);if(h<0)h+=360}
+s=Math.round(s*100);const L=Math.min(Math.max(l*100,28),45),c=x=>`hsl(${h} ${s}% ${x}%)`;
+return tcache[hex]={'--p':c(L),'--ph':c(L-6),'--pd':c(L-16),'--pl':`hsl(${h} ${Math.min(s,70)}% 92%)`,'--gt':`hsl(${h} ${Math.min(s,60)}% 98% / .6)`,'--gb':`hsl(${h} 40% 100% / .6)`,'--ring':`hsl(${h} ${s}% ${L}% / .35)`,'--bg':`hsl(${h} ${Math.min(s,40)}% 96%)`}}
+function theme(hex){const n={'--p':'#111','--ph':'#000','--pd':'#000','--pl':'#f1f1f1','--gt':'rgba(255,255,255,.58)','--gb':'rgba(255,255,255,.55)','--ring':'rgba(0,0,0,.25)','--bg':'#f6f6f4'};const v=hex?pal(hex):n;for(const k in v)document.documentElement.style.setProperty(k,v[k])}
+function toast(m){const t=document.createElement('div');t.className='toast';t.textContent=m;document.body.append(t);setTimeout(()=>t.remove(),2000)}
+const money=n=>Number(n).toLocaleString('ar-EG')+' جنيه';
+const logoSvg='<svg viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#111"/><text x="32" y="43" font-family="Georgia,serif" font-size="34" font-weight="700" fill="#fff" text-anchor="middle">PS</text></svg>';
+/* admin */
+function admin(){theme(null);if(!adm){$('#app').innerHTML=`<div class="wrap adm" style="max-width:380px;padding-top:60px"><div class="box glass"><h2>لوحة التحكم</h2><input type="email" id="em" placeholder="البريد الإلكتروني" dir="ltr"><input type="password" id="pw" placeholder="كلمة المرور" dir="ltr"><button class="btn" style="width:100%" id="lg">دخول</button></div></div>`;$('#lg').onclick=async()=>{const r=await fetch(CFG.url+'/auth/v1/token?grant_type=password',{method:'POST',headers:{apikey:CFG.key,'Content-Type':'application/json'},body:JSON.stringify({email:$('#em').value.trim(),password:$('#pw').value})});const j=await r.json();if(r.ok){TK=j.access_token;adm=true;admin()}else toast('بيانات الدخول خاطئة')};return}
+const tabs=['المنتجات','الإعدادات','التحليلات'];
+$('#app').innerHTML=`<div class="wrap adm" style="padding-top:14px"><div class="pills">${tabs.map((t,i)=>`<button class="pill ${ai==i?'on':''}" onclick="ai=${i};admin()">${t}</button>`).join('')}<button class="pill" onclick="adm=false;TK='';admin()">خروج</button></div><div id="tb"></div></div>`;
+const T=$('#tb');
+if(ai==0){T.innerHTML=`<button class="btn" onclick="editP()">+ منتج جديد</button><div class="box glass" style="margin-top:12px;overflow-x:auto"><table><tr><th>الاسم</th><th>السعر</th><th>المخزون</th><th></th></tr>${P.map(p=>`<tr><td>${esc(p.name)}</td><td>${p.price}</td><td>${p.stock}</td><td><button class="chip" onclick="editP('${p.id}')">تعديل</button> <button class="chip" onclick="delP('${p.id}')">حذف</button></td></tr>`).join('')}</table></div>`}
+if(ai==1){T.innerHTML=`<div class="box glass">${[['phone','رقم واتساب التاجر (2499...)'],['fb','رابط فيسبوك'],['tt','رابط تيك توك'],['map','رابط الموقع أو Lat,Lng']].map(([k,l])=>`<label>${l}</label><input id="s_${k}" value="${esc(S[k])}">`).join('')}<button class="btn" id="ss">حفظ</button></div>`;$('#ss').onclick=async()=>{['phone','fb','tt','map'].forEach(k=>S[k]=$('#s_'+k).value.trim());try{await rest('store_settings',{method:'POST',headers:{Prefer:'resolution=merge-duplicates,return=minimal'},body:JSON.stringify({id:1,data:S})},TK);toast('تم الحفظ')}catch(e){toast('فشل الحفظ')}}}
+if(ai==2){const d=[...P].sort((a,b)=>b.rc-a.rc),tb=a=>`<table><tr><th>المنتج</th><th>الطلبات</th></tr>${a.map(p=>`<tr><td>${esc(p.name)}</td><td>${p.rc}</td></tr>`).join('')}</table>`;const prof=P.reduce((a,p)=>a+(p.price-p.cost)*p.rc,0);
+T.innerHTML=`<div class="box glass"><b>الأرباح المقدرة: ${money(prof)}</b></div><div class="box glass"><h3>الأكثر طلباً</h3>${tb(d.slice(0,5))}</div><div class="box glass"><h3>الأقل طلباً</h3>${tb([...d].reverse().slice(0,5))}</div><div class="box glass"><h3>⚠️ تنبيه المخزون (أقل من 5)</h3>${P.filter(p=>p.stock<5).map(p=>`<div>${esc(p.name)} — ${p.stock}</div>`).join('')||'<span class="mu">لا يوجد</span>'}</div>`}}
+async function delP(id){if(confirm('حذف المنتج؟')){try{await rest('products?id=eq.'+id,{method:'DELETE'},TK);await load()}catch(e){toast('فشل الحذف')}admin()}}
+let ed;
+function editP(id){ed=id?JSON.parse(JSON.stringify(P.find(p=>p.id==id))):{id:'p'+Date.now(),name:'',cat:'رجالي',price:0,cost:0,stock:0,sizes:[],colors:[],desc:'',images:[],rc:0};
+const m=document.createElement('div');m.className='mod adm';m.id='md';document.body.append(m);drawEd()}
+function drawEd(){$('#md').innerHTML=`<div class="box glass" style="max-width:520px;margin:auto;background:#fffe"><label>الاسم</label><input id="e_n" value="${esc(ed.name)}"><label>القسم</label><select id="e_c">${['رجالي','نسائي','رياضي'].map(c=>`<option ${ed.cat==c?'selected':''}>${c}</option>`).join('')}</select>
+<label>السعر</label><input id="e_p" type="number" value="${ed.price}"><label>سعر التكلفة</label><input id="e_k" type="number" value="${ed.cost}"><label>المخزون</label><input id="e_s" type="number" value="${ed.stock}">
+<label>المقاسات</label><div class="row">${[...Array(10)].map((_,i)=>`<button type="button" class="chip ${ed.sizes.includes(35+i)?'on':''}" onclick="tg(${35+i})">${35+i}</button>`).join('')}</div>
+<label>الألوان</label>${ed.colors.map((c,i)=>`<div style="display:flex;gap:6px"><input value="${esc(c.n)}" onchange="ed.colors[${i}].n=this.value"><input type="color" style="width:60px" value="${c.h}" onchange="ed.colors[${i}].h=this.value"><button class="chip" onclick="ed.colors.splice(${i},1);keep();drawEd()">×</button></div>`).join('')}<button class="chip" onclick="keep();ed.colors.push({n:'لون',h:'#333333'});drawEd()">+ لون</button>
+<br><label>الوصف</label><textarea id="e_d">${esc(ed.desc)}</textarea><label>الصور (حتى 4)</label><input type="file" accept="image/*" multiple id="e_i"><div class="th">${ed.images.map(s=>`<img src="${s}">`).join('')}</div>
+<div style="display:flex;gap:8px;margin-top:14px"><button class="btn" style="flex:1" onclick="svP()">حفظ</button><button class="btn g" style="flex:1" onclick="$('#md').remove()">إلغاء</button></div></div>`;
+$('#e_i').onchange=async e=>{keep();ed.images=(await Promise.all([...e.target.files].slice(0,4).map(async f=>up(await sm(f))))).filter(Boolean);drawEd()}}
+const keep=()=>{ed.name=$('#e_n').value;ed.cat=$('#e_c').value;ed.price=+$('#e_p').value;ed.cost=+$('#e_k').value;ed.stock=+$('#e_s').value;ed.desc=$('#e_d').value};
+function tg(s){keep();const i=ed.sizes.indexOf(s);i<0?ed.sizes.push(s):ed.sizes.splice(i,1);ed.sizes.sort();drawEd()}
+const sm=f=>new Promise(r=>{const fr=new FileReader();fr.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,640/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*k;c.height=im.height*k;c.getContext('2d').drawImage(im,0,0,c.width,c.height);r(c.toDataURL('image/jpeg',.7))};im.onerror=()=>r(null);im.src=fr.result};fr.readAsDataURL(f)});
+async function svP(){keep();if(!ed.name||!ed.sizes.length||!ed.colors.length)return toast('أكمل الاسم والمقاسات والألوان');try{const{id:_i,rc:_r,...dd}=ed;await rest('products',{method:'POST',headers:{Prefer:'resolution=merge-duplicates,return=minimal'},body:JSON.stringify({id:ed.id,data:dd})},TK);await load()}catch(e){return toast('فشل الحفظ')}$('#md').remove();admin()}
+const up=async d=>{if(!d)return null;const b=await(await fetch(d)).blob(),n=Date.now()+Math.random().toString(36).slice(2)+'.jpg';const r=await fetch(CFG.url+'/storage/v1/object/products/'+n,{method:'POST',headers:{apikey:CFG.key,Authorization:'Bearer '+TK,'Content-Type':'image/jpeg'},body:b});if(!r.ok){toast('فشل رفع الصورة');return null}return CFG.url+'/storage/v1/object/public/products/'+n};
+load().then(admin).catch(()=>{$('#app').innerHTML='<p style="padding:40px;text-align:center">تعذّر الاتصال بالخادم</p>'});
+</script>
+</body>
+</html>
